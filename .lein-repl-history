@@ -37,3 +37,6 @@ quit
 (require 'armstrong-numbers-test)
  (clojure.test/run-tests 'armstrong-numbers-test)
 quit
+(require 'armstrong-numbers-test)
+ (clojure.test/run-tests 'armstrong-numbers-test)
+quit
