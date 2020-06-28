@@ -3,16 +3,22 @@
 (defn exp [x n]
   (reduce * (repeat n x)))
 
-(defn expBasedOnBaseAsString [int-as-str n]
-  (exp (Integer/parseInt (nth int-as-str n)) n))
+(defn getDigitFromNumber [s index]
+  (Integer/parseInt (str (nth s index)) ))
+
+(defn get-digits-from-number [n]
+  (map #(Integer/parseInt (str %)) (seq (str n))))
+
+(defn expBasedOnBaseAsString [int-as-str index power]
+  (exp (getDigitFromNumber int-as-str index) power))
 
 (defn armstrong? [num]
     (= num 
       (let [int-as-str (str num)
-            power (count (str num))]
+            power (count int-as-str)]
         (loop [ index 0
                 acc   0]
-          (if (= index (count int-as-str))
+          (if (= index power)
             acc
             (recur  (inc index) 
-                    (+ acc (exp (Integer/parseInt (str (nth int-as-str index))) power ))))))))
+                    (+ acc (expBasedOnBaseAsString int-as-str index power))))))))
